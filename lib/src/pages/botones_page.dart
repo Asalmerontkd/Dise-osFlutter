@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ class BotonesPage extends StatelessWidget {
             child: Column(
               children: [
                 _titulos(),
+                _botonesRedondeados()
               ],
             ),
           )
@@ -125,6 +127,88 @@ class BotonesPage extends StatelessWidget {
             title: Container()
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _botonesRedondeados(){
+    return Table(
+      children: [
+        TableRow(
+          children: [
+            _crearBotonRedondeado(Colors.blue, Icons.border_horizontal, 'Holi'),
+            _crearBotonRedondeado(Colors.grey, Icons.burst_mode, 'Holi'),
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBotonRedondeado(Colors.green, Icons.import_contacts, 'Holi'),
+            _crearBotonRedondeado(Colors.pinkAccent, Icons.swap_calls, 'Holi'),
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBotonRedondeado(Colors.blueGrey, Icons.code, 'Holi'),
+            _crearBotonRedondeado(Colors.lightBlue, Icons.dehaze, 'Holi'),
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBotonRedondeado(Colors.cyan, Icons.widgets, 'Holi'),
+            _crearBotonRedondeado(Colors.brown, Icons.insert_chart, 'Holi'),
+          ]
+        ),
+      ],
+    );
+  }
+
+  Widget _crearBotonRedondeado(Color color, IconData icono, String texto){
+    /*return Container(
+      height: 180.0,
+      margin: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+        color: Color.fromRGBO(62, 66, 107, 0.7),
+        borderRadius: BorderRadius.circular(20.0)
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          SizedBox(height: 5.0,),
+          CircleAvatar(
+            backgroundColor: Colors.pinkAccent,
+            radius: 35.0,
+            child: Icon( Icons.swap_calls, color: Colors.white, size: 30.0,),
+          ),
+          Text('Texto', style: TextStyle( color: Colors.pinkAccent ),),
+          SizedBox(height: 5.0,)
+        ]
+      ),
+    );*/
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur( sigmaX: 10.0, sigmaY: 10.0 ),
+        child: Container(
+          height: 180.0,
+          margin: EdgeInsets.all(15.0),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(62, 66, 107, 0.7),
+            borderRadius: BorderRadius.circular(20.0)
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              SizedBox( height: 5.0 ),
+              CircleAvatar(
+                backgroundColor: color,
+                radius: 35.0,
+                child: Icon( icono, color: Colors.white, size: 30.0 ),
+              ),
+              Text( texto , style: TextStyle( color: color )),
+              SizedBox( height: 5.0 )
+            ],
+          ),
+ 
+        ),
       ),
     );
   }
